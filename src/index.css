@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #135bec;
+  --color-background-light: #f6f6f8;
+  --color-background-dark: #101622;
+
+  --font-display: "Space Grotesk", sans-serif;
+  --font-sans: "Space Grotesk", system-ui, sans-serif;
+
+  --radius: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-full: 9999px;
+}
+
+@layer base {
+  body {
+    @apply font-sans bg-background-light text-slate-900;
+  }
+}
