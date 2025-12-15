@@ -73,7 +73,7 @@ export default function UploadArea({
             <span className="material-symbols-outlined text-4xl">cloud_upload</span>
           </div>
           <p className="text-slate-900 text-xl font-bold leading-tight tracking-[-0.015em] max-w-[480px] text-center">{statusMessage}</p>
-          <p className="text-slate-500 text-sm font-normal leading-normal max-w-[480px] text-center">Supported formats: .CSV, .DAT, .XML (Max 50MB)</p>
+          <p className="text-slate-500 text-sm font-normal leading-normal max-w-[480px] text-center">Supported formats: .DAT, .txt (Max 50MB)</p>
         </div>
         <button className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-6 bg-slate-200 hover:bg-slate-300 text-slate-900 text-sm font-bold leading-normal tracking-[0.015em] transition-colors">
           <span className="truncate">Browse Files</span>
