@@ -8,7 +8,7 @@ export default function Footer() {
                         <div className="w-6 h-6 rounded bg-primary flex items-center justify-center text-white text-xs">
                             <span className="material-icons-outlined text-sm">monitor_heart</span>
                         </div>
-                        <span className="text-lg font-bold">CardioAI</span>
+                        <span className="text-lg font-bold">AnalyzeECG</span>
                     </div>
                     <p className="text-slate-500 text-sm max-w-xs mb-6">
                         Advanced machine learning tools for cardiovascular health monitoring and research.

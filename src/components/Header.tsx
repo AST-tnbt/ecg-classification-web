@@ -25,11 +25,11 @@ export default function Header() {
                 </div>
                 {/* <!-- CTA & Theme Toggle --> */}
                 <div className="flex items-center gap-4">
-                    <a className="hidden sm:flex items-center gap-2 bg-primary hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors shadow-lg shadow-primary/25"
-                        href="#">
-                        <span>Dashboard</span>
+                    <Link className="hidden sm:flex items-center gap-2 bg-primary hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors shadow-lg shadow-primary/25"
+                        to="/analyze">
+                        <span>Get started</span>
                         <span className="material-icons-outlined text-sm">arrow_forward</span>
-                    </a>
+                    </Link>
                 </div>
             </div>
         </div>
