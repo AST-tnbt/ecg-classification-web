@@ -4,13 +4,22 @@ type HeaderProps = {
     currentPath: string
 }
 
-const navItemClass = (path: string, currentPath: string) =>
-  `
-    px-3 py-2 text-sm font-medium transition-colors
-    ${currentPath === path
-      ? "text-primary"
-      : "text-slate-500 hover:text-primary dark:text-slate-400"}
-  `
+const getRootPath = (pathname: string) => {
+  const segment = pathname.split("/").filter(Boolean)[0]
+  return segment ? `/${segment}` : "/"
+}
+
+const navItemClass = (path: string, currentPath: string) => {
+    const rootPath = getRootPath(currentPath)
+    return (
+        `
+          px-3 py-2 text-sm font-medium transition-colors
+          ${rootPath === path
+            ? "text-primary"
+            : "text-slate-500 hover:text-primary dark:text-slate-400"}
+        `
+    )
+}
 
 export default function Header({ currentPath }: HeaderProps) {
 
