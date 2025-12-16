@@ -1,12 +1,14 @@
-import { Outlet } from "react-router";
+import { Outlet, useLocation } from "react-router";
 import Header from "./Header";
 import Footer from "./Footer";
 
 export default function Layout() {
+  const { pathname } = useLocation()
+
   return (
     <>
         <main>
-          <Header />
+          <Header currentPath={pathname} />
           <Outlet />
           <Footer />
         </main>
