@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 export default function Introduction() {
   return (
     <main className="pt-24 pb-16 lg:pt-32 lg:pb-24 overflow-hidden">
@@ -32,11 +34,12 @@ export default function Introduction() {
               Upload your ECG signals and get instant, detailed analysis powered by deep learning.
             </p>
             <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
-              <button
-                className="w-full sm:w-auto px-8 py-3.5 bg-primary text-white rounded-lg font-semibold shadow-lg shadow-primary/30 hover:bg-blue-600 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2">
+              <Link
+                to="/analyze"
+                className="w-full cursor-pointer sm:w-auto px-8 py-3.5 bg-primary text-white rounded-lg font-semibold shadow-lg shadow-primary/30 hover:bg-blue-600 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2">
                 <span className="material-icons-outlined">upload_file</span>
                 Start Analysis
-              </button>
+              </Link>
               <button
                 className="w-full sm:w-auto px-8 py-3.5 bg-white text-slate-700 border border-slate-200 rounded-lg font-medium hover:bg-slate-50 transition-colors flex items-center justify-center gap-2">
                 <span className="material-icons-outlined">play_circle</span>
