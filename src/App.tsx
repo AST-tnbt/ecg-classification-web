@@ -3,6 +3,7 @@ import Home from "./pages/Home"
 import Analyze from "./pages/Analyze"
 import Demo from "./pages/Demo"
 import Layout from "./components/Layout"
+import MachineLearningStep from "./pages/MachineLearningStep"
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Route index element={ <Home /> }/>
         <Route path='/analyze' element={ <Analyze /> }/>
         <Route path='/demo' element={ <Demo /> }/>
+        <Route path='/step-1' element={ <MachineLearningStep /> }/>
       </Route>
     </Routes>
   )
