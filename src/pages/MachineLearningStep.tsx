@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router"
 import MLSelectionCard from "../components/machine_learning_step/MLSelectionCard"
 import { MLSelectionValue } from "../components/machine_learning_step/MLValue"
+import { useState } from "react"
 
 export default function MachineLearningStep() {
     const ModelOptions = [
@@ -21,13 +22,19 @@ export default function MachineLearningStep() {
         {
             name: "Random Forest",
             icon: "account_tree",
-            value: MLSelectionValue.KNN,
+            value: MLSelectionValue.RF,
             desc: "Ensemble learning method for robust classification against overfitting.",
             status: "Robust & Reliable"
         },
     ]
 
+    const [selectedModel, setSelectedModel] = useState<string | null>(null)
     const navigation = useNavigate()
+
+    const handleSubmidAction = () => {
+        console.log(`Selected model: ${selectedModel}`)
+    }
+
     return (
         <div className="relative isolate">
             {/* <!-- Background --> */}
@@ -56,7 +63,12 @@ export default function MachineLearningStep() {
                 <form className="mt-4 grid gap-4 md:grid-cols-3">
                     {
                         ModelOptions.map((item, index) =>
-                            <MLSelectionCard key={index} {...item} />
+                            <MLSelectionCard
+                                key={index}
+                                {...item}
+                                checked={selectedModel === item.value}
+                                onChange={setSelectedModel}
+                            />
                         )
                     }
                 </form>
@@ -68,7 +80,10 @@ export default function MachineLearningStep() {
                         Cancel Analysis
                     </button>
                     <button
-                        onClick={() => { navigation("/analyze/step-2") }}
+                        onClick={() => { 
+                            handleSubmidAction()
+                            navigation("/analyze/step-2")
+                        }}
                         className="w-full cursor-pointer sm:w-auto group flex items-center justify-center gap-2 h-12 px-8 rounded-lg bg-primary hover:bg-blue-500 text-white text-base font-bold leading-normal tracking-[0.015em] transition-all shadow-lg shadow-blue-500/20"
                     >
                         <span>Continue</span>
