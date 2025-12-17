@@ -3,10 +3,12 @@ import Information from "../components/analyze/Information";
 import UploadArea from "../components/analyze/UploadArea";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
+import { useAnalyzeStepAccess } from "../context/AnalyzeStepContext";
 
 export default function Analyze() {
   const [file, setFile] = useState<File | null>(null)
   const navigation = useNavigate()
+  const { allowSteps } = useAnalyzeStepAccess()
 
   const handleSubmitAction = () => {
     if (file == null) {
@@ -14,6 +16,7 @@ export default function Analyze() {
       return
     }
 
+    allowSteps()
     navigation("/analyze/step-1")
   }
 

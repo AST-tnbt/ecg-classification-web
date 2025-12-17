@@ -2,6 +2,7 @@ import { useNavigate } from "react-router"
 import MLSelectionCard from "../components/machine_learning_step/MLSelectionCard"
 import { MLSelectionValue } from "../components/machine_learning_step/MLValue"
 import { useState } from "react"
+import { useAnalyzeStepAccess } from "../context/AnalyzeStepContext"
 
 export default function MachineLearningStep() {
     const ModelOptions = [
@@ -30,9 +31,12 @@ export default function MachineLearningStep() {
 
     const [selectedModel, setSelectedModel] = useState<string | null>(null)
     const navigation = useNavigate()
+    const { allowSteps } = useAnalyzeStepAccess()
 
     const handleSubmidAction = () => {
         console.log(`Selected model: ${selectedModel}`)
+        allowSteps()
+        navigation("/analyze/step-2")
     }
 
     return (
@@ -82,7 +86,6 @@ export default function MachineLearningStep() {
                     <button
                         onClick={() => { 
                             handleSubmidAction()
-                            navigation("/analyze/step-2")
                         }}
                         className="w-full cursor-pointer sm:w-auto group flex items-center justify-center gap-2 h-12 px-8 rounded-lg bg-primary hover:bg-blue-500 text-white text-base font-bold leading-normal tracking-[0.015em] transition-all shadow-lg shadow-blue-500/20"
                     >

@@ -5,11 +5,14 @@ import App from './App.tsx'
 import { BrowserRouter } from 'react-router'
 import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer } from 'react-toastify'
+import { AnalyzeStepProvider } from './context/AnalyzeStepContext.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
-      <App />
+      <AnalyzeStepProvider>
+        <App />
+      </AnalyzeStepProvider>
     </BrowserRouter>
     <ToastContainer
       position="bottom-left"
