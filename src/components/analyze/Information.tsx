@@ -1,4 +1,7 @@
-export default function Information() {
+type InformationProps = {
+    onClick: () => void
+}
+export default function Information({ onClick }: InformationProps) {
     return (
         <>
             {/* <!-- Primary Action --> */}
@@ -13,6 +16,7 @@ export default function Information() {
                 </p>
                 {/* <!-- SingleButton Reuse --> */}
                 <button
+                    onClick={() => onClick()}
                     className="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary hover:bg-blue-600 text-white gap-2 text-base font-bold leading-normal tracking-[0.015em] transition-colors shadow-lg shadow-primary/20">
                     <span className="material-symbols-outlined">analytics</span>
                     <span className="truncate">Start Analysis</span>

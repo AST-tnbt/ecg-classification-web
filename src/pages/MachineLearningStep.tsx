@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router"
 import MLSelectionCard from "../components/machine_learning_step/MLSelectionCard"
 import { MLSelectionValue } from "../components/machine_learning_step/MLValue"
 
@@ -25,6 +26,8 @@ export default function MachineLearningStep() {
             status: "Robust & Reliable"
         },
     ]
+
+    const navigation = useNavigate()
     return (
         <div className="relative isolate">
             {/* <!-- Background --> */}
@@ -54,7 +57,10 @@ export default function MachineLearningStep() {
                     }
                 </form>
                 <div className="flex flex-col sm:flex-row items-center justify-end gap-4 mt-8 pt-6">
-                    <button className="w-full cursor-pointer sm:w-auto px-6 h-12 rounded-lg border border-transparent text-slate-500 font-bold text-base hover:bg-gray-100 transition-colors">
+                    <button
+                        onClick={() => {navigation("/analyze")}}
+                        className="w-full cursor-pointer sm:w-auto px-6 h-12 rounded-lg border border-transparent text-slate-500 font-bold text-base hover:bg-gray-100 transition-colors"
+                    >
                         Cancel Analysis
                     </button>
                     <button className="w-full cursor-pointer sm:w-auto group flex items-center justify-center gap-2 h-12 px-8 rounded-lg bg-primary hover:bg-blue-500 text-white text-base font-bold leading-normal tracking-[0.015em] transition-all shadow-lg shadow-blue-500/20">
