@@ -2,10 +2,20 @@ import { useState } from "react";
 import Information from "../components/analyze/Information";
 import UploadArea from "../components/analyze/UploadArea";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 export default function Analyze() {
   const [file, setFile] = useState<File | null>(null)
   const navigation = useNavigate()
+
+  const handleSubmitAction = () => {
+    if (file == null) {
+      toast.error("Please upload a file")
+      return
+    }
+
+    navigation("/analyze/step-1")
+  }
 
   return (
     <div className="max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto layout-container flex h-full grow flex-col pt-24">
@@ -27,7 +37,7 @@ export default function Analyze() {
               />
             </div>
             <div className="lg:col-span-1 flex flex-col gap-6">
-              <Information onClick={() => {navigation("/analyze/step-1")}}/>
+              <Information onClick={handleSubmitAction}/>
             </div>
           </div>
         </div>
