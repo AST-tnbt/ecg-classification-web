@@ -22,7 +22,7 @@ function App() {
           <Route path='/analyze/step-1' element={ <MachineLearningStep /> }/>
           <Route path='/analyze/step-2' element={ <DeepLearningStep /> }/>
         </Route>
-        <Route path="/result" element={ <Result /> }/>
+        <Route path="/analyze/result" element={ <Result /> }/>
       </Route>
     </Routes>
   )
