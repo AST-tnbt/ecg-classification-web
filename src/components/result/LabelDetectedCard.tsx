@@ -2,7 +2,6 @@ type LabelDetectedCardProperties = {
     status: boolean
     label: string
     startTime: number
-    endTime: number
     value: string
     active: boolean
     onClick: () => void
@@ -13,7 +12,6 @@ export default function LabelDetectedCard({
     value,
     label,
     startTime,
-    endTime,
     active,
     onClick
 }: LabelDetectedCardProperties) {
