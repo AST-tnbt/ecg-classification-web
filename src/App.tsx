@@ -7,6 +7,7 @@ import MachineLearningStep from "./pages/MachineLearningStep"
 import DeepLearningStep from "./pages/DeepLearningStep"
 import { useAnalyzeStepAccess } from "./context/AnalyzeStepContext"
 import RouteGuard from "./guard/RouteGuard"
+import Result from "./pages/Result"
 
 function App() {
   const { canAccessSteps } = useAnalyzeStepAccess()
@@ -21,6 +22,7 @@ function App() {
           <Route path='/analyze/step-1' element={ <MachineLearningStep /> }/>
           <Route path='/analyze/step-2' element={ <DeepLearningStep /> }/>
         </Route>
+        <Route path="/result" element={ <Result /> }/>
       </Route>
     </Routes>
   )
