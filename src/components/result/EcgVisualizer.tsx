@@ -1,31 +1,39 @@
 import Plot from "react-plotly.js"
 
-type Beat = {
+export type Beat = {
     startTime: number
     endTime: number
     status: boolean
+    label: string
+    value: string
 }
 
-type ECGSignal = {
+export type ECGSignal = {
     samplingRate: number
     values: number[]
 }
 
 type ECGChartProps = {
+    // cursor: number
     signal: ECGSignal
     beats: Beat[]
     selectedBeat?: Beat
 }
 
 export function EcgVisulizer({
+    // cursor,
     signal,
     beats,
     selectedBeat
 }: ECGChartProps) {
 
+    const isLockedScale = selectedBeat == undefined
+
     const times = signal.values.map(
         (_, i) => i / signal.samplingRate
     )
+
+    // const chunkStartTime = cursor / signal.samplingRate
 
     // Highlight regions
     const shapes = beats.map(b => ({
@@ -37,7 +45,7 @@ export function EcgVisulizer({
         y0: 0,
         y1: 1,
         fillcolor: b.status
-            ? "rgba(34, 132, 197, 0.15)"
+            ? "rgba(2, 107, 254, 0.15)"
             : "rgba(239,68,68,0.25)",
         line: { width: 0 }
     }))
@@ -45,8 +53,8 @@ export function EcgVisulizer({
     // Zoom to selected beat
     const xRange = selectedBeat
         ? [
-            selectedBeat.startTime - 0.5,
-            selectedBeat.endTime + 0.5
+            selectedBeat.startTime - 0.1,
+            selectedBeat.endTime + 0.1
         ]
         : undefined
 
@@ -63,25 +71,37 @@ export function EcgVisulizer({
                 }
             ]}
             layout={{
-                margin: { t: 40, l: 20, r: 20, b: 40 },
+                margin: { t: 40, l: 40, r: 20, b: 40 },
                 height: "100%",
                 shapes,
                 xaxis: {
                     title: "Time (s)",
-                    dtick: 0.4,
+                    dtick: 0.2, // 5 large squares = 1 second
                     gridcolor: "#fecaca",
+                    minor: {
+                        dtick: 0.04, // Small squares
+                        gridcolor: "#fee2e2",
+                    },
+                    range: xRange,
                     zeroline: false,
-                    range: xRange
+                    ...(isLockedScale ? { scaleanchor: "y" } : {})
                 },
                 yaxis: {
                     title: "mV",
-                    dtick: 1,
+                    dtick: 0.5, // Standard ECG: 0.5mV per large square
                     gridcolor: "#fecaca",
-                    fixedRange: false,
+                    minor: {
+                        dtick: 0.1,
+                        gridcolor: "#fee2e2",
+                    },
                     zeroline: false
                 },
                 paper_bgcolor: "#fff",   // card background
                 plot_bgcolor: "#f8fafc",   // ECG canvas
+                transition: {
+                    duration: 300,
+                    easing: "cubic-in-out"
+                },
             }}
             config={{
                 displayModeBar: true,

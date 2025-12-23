@@ -6,12 +6,15 @@ import { BrowserRouter } from 'react-router'
 import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer } from 'react-toastify'
 import { AnalyzeStepProvider } from './context/AnalyzeStepContext.tsx'
+import { AnalyzeDataProvider } from './context/AnalyzeDataContext.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
       <AnalyzeStepProvider>
-        <App />
+        <AnalyzeDataProvider>
+          <App />
+        </AnalyzeDataProvider>
       </AnalyzeStepProvider>
     </BrowserRouter>
     <ToastContainer

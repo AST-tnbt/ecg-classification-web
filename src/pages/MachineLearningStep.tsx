@@ -19,14 +19,7 @@ export default function MachineLearningStep() {
             value: MLSelectionValue.SVM,
             desc: "Optimal for high-dimensional margin separation and complex decision boundaries.",
             status: "High Accuracy"
-        },
-        {
-            name: "Random Forest",
-            icon: "account_tree",
-            value: MLSelectionValue.RF,
-            desc: "Ensemble learning method for robust classification against overfitting.",
-            status: "Robust & Reliable"
-        },
+        }
     ]
 
     const [selectedModel, setSelectedModel] = useState<string | null>(null)
@@ -64,7 +57,7 @@ export default function MachineLearningStep() {
                         Choose an algorithm to classify heartbeat arrhythmias from the raw ECG signal. The selected model will be used for the subsequent feature extraction and analysis.
                     </p>
                 </div>
-                <form className="mt-4 grid gap-4 md:grid-cols-3">
+                <form className="mt-4 grid gap-4 md:grid-cols-2">
                     {
                         ModelOptions.map((item, index) =>
                             <MLSelectionCard

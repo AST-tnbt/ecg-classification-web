@@ -16,13 +16,13 @@ function App() {
     <Routes>
       <Route element={ <Layout /> }>
         <Route index element={ <Home /> }/>
-        <Route path='/analyze' element={ <Analyze /> }/>
         <Route path='/demo' element={ <Demo /> }/>
+        <Route path='/analyze' element={ <Analyze /> }/>
         <Route element={<RouteGuard allowed={canAccessSteps} />}>
-          <Route path='/analyze/step-1' element={ <MachineLearningStep /> }/>
-          <Route path='/analyze/step-2' element={ <DeepLearningStep /> }/>
+            <Route path='/analyze/step-1' element={ <MachineLearningStep /> }/>
+            <Route path='/analyze/step-2' element={ <DeepLearningStep /> }/>
         </Route>
-        <Route path="/analyze/result" element={ <Result /> }/>
+            <Route path="/analyze/result/:id" element={ <Result /> }/>
       </Route>
     </Routes>
   )

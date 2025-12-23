@@ -4,17 +4,29 @@ import UploadArea from "../components/analyze/UploadArea";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { useAnalyzeStepAccess } from "../context/AnalyzeStepContext";
+import { useAnalyzeData } from "../context/AnalyzeDataContext";
 
 export default function Analyze() {
-  const [file, setFile] = useState<File | null>(null)
+  const [heaFile, setHeaFile] = useState<File | null>(null)
+  const [datFile, setDatFile] = useState<File | null>(null)
   const navigation = useNavigate()
   const { allowSteps } = useAnalyzeStepAccess()
+  const { setFiles } = useAnalyzeData()
 
   const handleSubmitAction = () => {
-    if (file == null) {
-      toast.error("Please upload a file")
+    if (heaFile == null) {
+      toast.error("Please upload a .hea file")
       return
     }
+    if (datFile == null) {
+      toast.error("Please upload a .hea file")
+      return
+    }
+    
+    setFiles({
+      heaFile,
+      datFile
+    })
 
     allowSteps()
     navigation("/analyze/step-1")
@@ -34,13 +46,18 @@ export default function Analyze() {
             {/* <!-- Left Column: Upload Area (Span 2) --> */}
             <div className="lg:col-span-2 flex flex-col gap-6">
               <UploadArea
-                file={file}
-                onFileSelected={setFile}
-                onFileRemoved={() => setFile(null)}
+                heaFile={heaFile}
+                datFile={datFile}
+                onFilesSelected={({ hea, dat }) => {
+                  if (hea) setHeaFile(hea)
+                  if (dat) setDatFile(dat)
+                }}
+                onHeaRemoved={() => setHeaFile(null)}
+                onDatRemoved={() => setDatFile(null)}
               />
             </div>
             <div className="lg:col-span-1 flex flex-col gap-6">
-              <Information onClick={handleSubmitAction}/>
+              <Information onClick={handleSubmitAction} />
             </div>
           </div>
         </div>

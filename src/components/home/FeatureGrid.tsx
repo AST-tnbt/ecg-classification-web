@@ -2,18 +2,18 @@ export default function FeatureGrid() {
     const featureItems = [
         {
             icon: "bolt",
-            name: "Real-time Processing",
-            desc: "Upload raw ECG signals and receive instant classNameification. Our optimized backend processes hours of data in seconds."
+            name: "Multi models",
+            desc: "Using Machine learning to detect abnormal heartbeats. After that, abnormal heartbeat will be classified by Deep learning model."
         },
         {
             icon: "category",
             name: "Multi-ClassclassName Detection",
-            desc: "Accurately identifies Normal (N), Supraventricular (S), Ventricular (V), Fusion (F), and Unknown (Q) beats."
+            desc: "Accurately identifies Normal (N), Supraventricular ectopic beat (S), Ventricular ectopic beat (V), R-on-T PVC (r), and Unknown (Q) beats."
         },
         {
             icon: "file_download",
             name: "Comprehensive Exports",
-            desc: "Download detailed reports in CSV, PDF, or JSON formats. Compatible with major medical record systems."
+            desc: "Will be supported in the future"
         },
     ]
     return (
@@ -21,9 +21,8 @@ export default function FeatureGrid() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center max-w-3xl mx-auto mb-16">
                     <h2 className="text-primary font-semibold tracking-wide uppercase text-sm mb-3">Features</h2>
-                    <h3 className="text-3xl md:text-4xl font-bold mb-4">Advanced Diagnostics at Your Fingertips</h3>
-                    <p className="text-slate-500 ">Leveraging state-of-the-art Convolutional Neural Networks
-                        (CNN) to assist cardiologists in rapid diagnosis.</p>
+                    <h3 className="text-3xl md:text-4xl font-bold mb-4">Advanced Diagnostics with multi AI models</h3>
+                    <p className="text-slate-500 ">The collaboration of Machine learning and Deep learning</p>
                 </div>
                 <div className="grid md:grid-cols-3 gap-8">
                     {

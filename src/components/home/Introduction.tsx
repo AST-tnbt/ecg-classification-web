@@ -24,14 +24,14 @@ export default function Introduction() {
               Beta version
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight">
-              AI-Powered <br />
+              AI-Based <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">ECG
-                Classification</span>
+                Classifier</span>
             </h1>
             <p
               className="text-lg text-slate-600 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-              Detect arrhythmias and classify heartbeats from raw signal data with clinical-grade precision.
-              Upload your ECG signals and get instant, detailed analysis powered by deep learning.
+              Detect and classify abnormal heartbeats from ECG raw signals.
+              Upload your ECG signals and get the result by machine learning and deep learning.
             </p>
             <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
               <Link
@@ -73,7 +73,7 @@ export default function Introduction() {
                   xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M0 50 L20 50 L30 50 L40 40 L50 60 L60 50 L100 50 L110 30 L120 80 L130 10 L140 90 L150 50 L200 50 L210 50 L220 50 L230 50 L240 50 L250 50 L260 45 L270 55 L280 50 L300 50 L310 20 L320 85 L330 15 L340 95 L350 50 L500 50"
-                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                    strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path>
                 </svg>
                 {/* <!-- Scanning Overlay --> */}
                 <div

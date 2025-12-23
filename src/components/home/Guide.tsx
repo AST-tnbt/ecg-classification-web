@@ -19,26 +19,26 @@ export default function Guide() {
                                 className="absolute -left-[41px] top-0 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm ring-4 ring-background-light">
                                 1</div>
                             <h4 className="text-xl font-bold mb-2">Upload Signal Data</h4>
-                            <p className="text-slate-500">Drag &amp; drop your ECG recordings (MIT-BIH
+                            <p className="text-slate-500">Drag &amp; drop your ECG recordings (.dat and .hea
                                 format supported). We secure your data locally before processing.</p>
                         </div>
                         {/* <!-- Step 2 --> */}
-                        <div className="relative">
+                        <div className="relative ">
                             <div
-                                className="absolute -left-[41px] top-0 w-8 h-8 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center font-bold text-sm ring-4 ring-background-light">
+                                className="absolute -left-[41px] top-0 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm ring-4 ring-background-light">
                                 2</div>
                             <h4 className="text-xl font-bold mb-2">AI Processing</h4>
-                            <p className="text-slate-500">Our model denoises the signal, segments
-                                heartbeats, and classNameifies each beat using deep learning.</p>
+                            <p className="text-slate-500">Our models denoises the signal, segments
+                                heartbeats, and classifies each heartbeat.</p>
                         </div>
                         {/* <!-- Step 3 --> */}
                         <div className="relative">
                             <div
-                                className="absolute -left-[41px] top-0 w-8 h-8 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center font-bold text-sm ring-4 ring-background-light">
+                                className="absolute -left-[41px] top-0 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm ring-4 ring-background-light">
                                 3</div>
                             <h4 className="text-xl font-bold mb-2">Review &amp; Export</h4>
                             <p className="text-slate-500">Visualize the results on an interactive
-                                dashboard. Verify anomalies and export the full report.</p>
+                                dashboard.</p>
                         </div>
                     </div>
                 </div>

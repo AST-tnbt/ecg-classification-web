@@ -2,6 +2,8 @@ import { useNavigate } from "react-router"
 import DLSelectionCard from "../components/deep_learning_step/DLSelectionCard"
 import { toast } from "react-toastify"
 import { useState } from "react"
+import { useAnalyzeData } from "../context/AnalyzeDataContext"
+import { analyzeApi } from "../api/AnalyzeApi"
 
 export default function DeepLearningStep() {
     const deepLearningOptions = [
@@ -34,14 +36,31 @@ export default function DeepLearningStep() {
 
     const navigation = useNavigate()
     const [selectedModel, setSelectedModel] = useState<string | null>(null)
+    const { state, setSamplingRate } = useAnalyzeData()
 
-    const handleSubmitAction = () => {
+    const handleSubmitAction = async() => {
+        if (!state.files.heaFile || !state.files.datFile) {
+            toast.error("Missing ECG files, reload to try again")
+            return
+        }
+
         if (!selectedModel) {
             toast.error("Please select a model")
             return
         }
 
-        console.log(`Selected model: ${selectedModel}`)
+        console.log("Start call api")
+        const result = await analyzeApi({
+            heaFile: state.files.heaFile,
+            datFile: state.files.datFile,
+            step1Model: undefined,
+            step2Model: "cnn"
+        })
+
+        setSamplingRate(result.sampling_rate)
+        console.log(result)
+
+        navigation(`/analyze/result/${result.id}`)
     }
 
     return (

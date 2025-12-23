@@ -11,7 +11,7 @@ export default function Footer() {
                         <span className="text-lg font-bold">AnalyzeECG</span>
                     </div>
                     <p className="text-slate-500 text-sm max-w-xs mb-6">
-                        Advanced machine learning tools for cardiovascular health monitoring and research.
+                        AI tools for heartbeat classification from raw ECG signals.
                     </p>
                     <div className="flex gap-4">
                         <a className="text-slate-400 hover:text-primary transition-colors" href="#"><span
@@ -27,7 +27,6 @@ export default function Footer() {
                     <ul className="space-y-2 text-sm text-slate-500">
                         <li><a className="hover:text-primary" href="#">Features</a></li>
                         <li><a className="hover:text-primary" href="#">Live Demo</a></li>
-                        <li><a className="hover:text-primary" href="#">Pricing</a></li>
                         <li><a className="hover:text-primary" href="#">API Access</a></li>
                     </ul>
                 </div>

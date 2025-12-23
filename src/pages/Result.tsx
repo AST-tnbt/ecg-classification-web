@@ -1,9 +1,17 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import LabelDetectedCard from "../components/result/LabelDetectedCard"
 import MetricCard from "../components/result/MetricCard"
-import { EcgVisulizer } from "../components/result/EcgVisualizer"
+import { EcgVisulizer, type Beat } from "../components/result/EcgVisualizer"
+import { useAnalyzeData } from "../context/AnalyzeDataContext"
+import { useNavigate, useParams } from "react-router"
+import { toast } from "react-toastify"
+import { resultApi } from "../api/AnalyzeApi"
 
 export default function Result() {
+    const navigation = useNavigate()
+    const { id } = useParams<{ id: string }>()
+    const { state } = useAnalyzeData()
+
     const metrics = [
         {
             name: "Avg Heart Rate",
@@ -35,67 +43,48 @@ export default function Result() {
         },
     ]
 
-    // mock
-    const mockECGSignal = {
-        samplingRate: 360,
-        values: Array.from({ length: 3600 }, (_, i) => {
-            const t = i / 360
-            // fake ECG-ish waveform
-            return (
-            0.8 * Math.sin(2 * Math.PI * 1.2 * t) +   // base rhythm
-            0.15 * Math.sin(2 * Math.PI * 20 * t) +  // QRS-like spike
-            (Math.random() - 0.5) * 0.05             // noise
-            )
-        })
-    }
-    const mockDetectedBeats = [
-        {
-            status: true,
-            startTime: 1.8,
-            endTime: 2.1,
-            label: "N",
-            value: "Normal"
-        },
-        {
-            status: false,
-            startTime: 3.2,
-            endTime: 3.5,
-            label: "PVC",
-            value: "Premature Ventricular Contraction"
-        },
-        {
-            status: true,
-            startTime: 4.9,
-            endTime: 5.3,
-            label: "N",
-            value: "Normal"
-        },
-        {
-            status: false,
-            startTime: 6.4,
-            endTime: 6.9,
-            label: "AP",
-            value: "Atrial Premature Beat"
-        },
-        {
-            status: true,
-            startTime: 8.1,
-            endTime: 8.4,
-            label: "N",
-            value: "Normal"
-        }
-    ]
-    // end mock
+    const [signal, setSignal] = useState<number[]>([])
+    const [beats, setBeats] = useState<Beat[]>([])
+    const [cursor, setCursor] = useState(0)
+    const [hasMore, setHasMore] = useState(true)
 
     const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
+
+    useEffect(() => {
+        if (!id || !hasMore) return
+
+        const fetchChunk = async () => {
+            try {
+                const res = await resultApi(id, cursor)
+
+                setSignal([...res.signal])
+                setBeats([...res.heartbeats])
+
+                setCursor(res.next_cursor)
+                setHasMore(res.has_more)
+                console.log(res.heartbeats)
+                console.log(res.next_cursor)
+                console.log(res.signal)
+            } catch (err) {
+                console.error("Polling failed", err)
+            }
+        }
+
+        fetchChunk()
+    }, [id])
+
+    if (!id) {
+        toast.error("Invalid id")
+        navigation("/")
+    }
     return (
         <main className="max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto layout-container pb-14">
             <div className="flex flex-col gap-2 pt-24">
-                    <h1
-                        className="text-3xl md:text-4xl font-black tracking-tight text-text-main-light dark:text-text-main-dark">
-                        Classification Result
-                    </h1>
-                </div>
+                <h1
+                    className="text-3xl md:text-4xl font-black tracking-tight text-text-main-light dark:text-text-main-dark">
+                    Classification Result
+                </h1>
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8 mt-8">
                 {
                     metrics.map((item, index) =>
@@ -108,13 +97,16 @@ export default function Result() {
                 <div
                     className="pt-6 lg:col-span-3 flex flex-col bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden relative"
                 >
-                    <EcgVisulizer 
-                        signal={mockECGSignal}
-                        beats={mockDetectedBeats}
+                    <EcgVisulizer
+                        signal={{
+                            samplingRate: state.samplingRate ?? 250,
+                            values: signal
+                        }}
+                        beats={beats}
                         selectedBeat={
                             selectedIndex !== null
-                            ? mockDetectedBeats[selectedIndex]
-                            : undefined
+                            ? beats[selectedIndex]
+                            : beats[1]
                         }
                     />
                 </div>
@@ -129,16 +121,14 @@ export default function Result() {
                         </div>
                         {/* <!-- List Content --> */}
                         <div className="overflow-y-auto custom-scrollbar flex-1 p-3 space-y-3">
-                            {
-                                mockDetectedBeats.map((item, index) =>
-                                    <LabelDetectedCard
-                                        key={index}
-                                        {...item}
-                                        active={selectedIndex === index}
-                                        onClick={() => setSelectedIndex(index)}
-                                    />
-                                )
-                            }
+                            {beats.map((beat, i) => (
+                                <LabelDetectedCard
+                                    key={i}
+                                    {...beat}
+                                    active={selectedIndex === i}
+                                    onClick={() => setSelectedIndex(i)}
+                                />
+                            ))}
                         </div>
                         {/* <!-- Sidebar Footer --> */}
                         <div
