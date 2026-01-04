@@ -21,8 +21,8 @@ function App() {
         <Route element={<RouteGuard allowed={canAccessSteps} />}>
             <Route path='/analyze/step-1' element={ <MachineLearningStep /> }/>
             <Route path='/analyze/step-2' element={ <DeepLearningStep /> }/>
-        </Route>
             <Route path="/analyze/result/:id" element={ <Result /> }/>
+        </Route>
       </Route>
     </Routes>
   )

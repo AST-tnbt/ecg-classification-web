@@ -1,22 +1,23 @@
 import { useNavigate } from "react-router"
 import MLSelectionCard from "../components/machine_learning_step/MLSelectionCard"
-import { MLSelectionValue } from "../components/machine_learning_step/MLValue"
+import { ModelSelectionValue } from "../components/enum/ModelsValue"
 import { useState } from "react"
 import { useAnalyzeStepAccess } from "../context/AnalyzeStepContext"
+import { useAnalyzeData } from "../context/AnalyzeDataContext"
 
 export default function MachineLearningStep() {
     const ModelOptions = [
         {
             name: "K-Nearest Neighbors",
             icon: "grid_view",
-            value: MLSelectionValue.KNN,
+            value: ModelSelectionValue.KNN,
             desc: "Best for pattern recognition based on feature similarity in localized datasets.",
             status: "Simple & Effective"
         },
         {
             name: "Support Vector Machine",
             icon: "linear_scale",
-            value: MLSelectionValue.SVM,
+            value: ModelSelectionValue.SVM,
             desc: "Optimal for high-dimensional margin separation and complex decision boundaries.",
             status: "High Accuracy"
         }
@@ -25,9 +26,10 @@ export default function MachineLearningStep() {
     const [selectedModel, setSelectedModel] = useState<string | null>(null)
     const navigation = useNavigate()
     const { allowSteps } = useAnalyzeStepAccess()
+    const { setMlModel } = useAnalyzeData()
 
     const handleSubmidAction = () => {
-        console.log(`Selected model: ${selectedModel}`)
+        setMlModel(selectedModel != null ? selectedModel : "")
         allowSteps()
         navigation("/analyze/step-2")
     }
@@ -54,7 +56,7 @@ export default function MachineLearningStep() {
                     </div>
                     <h1 className="text-slate-900 text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em]">Select Classification Model</h1>
                     <p className="text-slate-500 text-base md:text-lg font-normal leading-relaxed max-w-2xl">
-                        Choose an algorithm to classify heartbeat arrhythmias from the raw ECG signal. The selected model will be used for the subsequent feature extraction and analysis.
+                        Choose an algorithm to classify heartbeat arrhythmias from the raw ECG signal. The selected model will be used for the subsequent feature extraction and analysis. You can skip this step.
                     </p>
                 </div>
                 <form className="mt-4 grid gap-4 md:grid-cols-2">

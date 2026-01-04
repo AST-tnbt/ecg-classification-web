@@ -14,34 +14,34 @@ export type ECGSignal = {
 }
 
 type ECGChartProps = {
-    // cursor: number
+    cursor: number
     signal: ECGSignal
     beats: Beat[]
     selectedBeat?: Beat
 }
 
 export function EcgVisulizer({
-    // cursor,
+    cursor,
     signal,
     beats,
     selectedBeat
 }: ECGChartProps) {
-
     const isLockedScale = selectedBeat == undefined
 
     const times = signal.values.map(
-        (_, i) => i / signal.samplingRate
+        (_, i) => cursor + i / signal.samplingRate
     )
 
-    // const chunkStartTime = cursor / signal.samplingRate
-
+    const windowStart = cursor
+    const windowEnd = cursor + signal.values.length / signal.samplingRate
+    
     // Highlight regions
     const shapes = beats.map(b => ({
         type: "rect",
         xref: "x",
         yref: "paper",
         x0: b.startTime,
-        x1: b.endTime,
+        x1: b.endTime ,
         y0: 0,
         y1: 1,
         fillcolor: b.status
@@ -56,10 +56,11 @@ export function EcgVisulizer({
             selectedBeat.startTime - 0.1,
             selectedBeat.endTime + 0.1
         ]
-        : undefined
+        : [windowStart, windowEnd]
 
     return (
         <Plot
+            key={cursor}
             data={[
                 {
                     x: times,
@@ -76,6 +77,7 @@ export function EcgVisulizer({
                 shapes,
                 xaxis: {
                     title: "Time (s)",
+                    autorange: false,
                     dtick: 0.2, // 5 large squares = 1 second
                     gridcolor: "#fecaca",
                     minor: {

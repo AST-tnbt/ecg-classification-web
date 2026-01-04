@@ -40,11 +40,6 @@ export default function Introduction() {
                 <span className="material-icons-outlined">upload_file</span>
                 Start Analysis
               </Link>
-              <button
-                className="w-full sm:w-auto px-8 py-3.5 bg-white text-slate-700 border border-slate-200 rounded-lg font-medium hover:bg-slate-50 transition-colors flex items-center justify-center gap-2">
-                <span className="material-icons-outlined">play_circle</span>
-                Watch Demo
-              </button>
             </div>
           </div>
           {/* <!-- Right Visual --> */}

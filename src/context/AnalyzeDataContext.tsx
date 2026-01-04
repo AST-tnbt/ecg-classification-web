@@ -8,6 +8,7 @@ type AnalyzeFiles = {
 type AnalyzeState = {
   files: AnalyzeFiles
   samplingRate: number | null
+  mlModel: string
 }
 
 type AnalyzeDataContextType = {
@@ -15,6 +16,7 @@ type AnalyzeDataContextType = {
 
   setFiles: (files: AnalyzeFiles) => void
   setSamplingRate: (fs: number) => void
+  setMlModel: (modelName: string) => void
 
   clearAll: () => void
 }
@@ -29,7 +31,8 @@ export function AnalyzeDataProvider({ children }: { children: ReactNode }) {
       heaFile: null,
       datFile: null
     },
-    samplingRate: null
+    samplingRate: null,
+    mlModel: ""
   })
 
   const setFiles = (files: AnalyzeFiles) => {
@@ -46,10 +49,18 @@ export function AnalyzeDataProvider({ children }: { children: ReactNode }) {
     }))
   }
 
+  const setMlModel = (modelName: string) => {
+    setState(prev => ({
+      ...prev,
+      modelName
+    }))
+  }
+
   const clearAll = () => {
     setState({
       files: { heaFile: null, datFile: null },
       samplingRate: null,
+      mlModel: ""
     })
   }
 
@@ -59,6 +70,7 @@ export function AnalyzeDataProvider({ children }: { children: ReactNode }) {
         state,
         setFiles,
         setSamplingRate,
+        setMlModel,
         clearAll
       }}
     >

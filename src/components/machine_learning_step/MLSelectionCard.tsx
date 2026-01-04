@@ -1,9 +1,9 @@
-import type { MLSelectionValue } from "./MLValue"
+import type { ModelSelectionValue } from "../enum/ModelsValue"
 
 type MLSelectionCardProperties = {
     name: string
     icon: string
-    value: MLSelectionValue
+    value: ModelSelectionValue
     desc: string
     status: string
     checked: boolean
