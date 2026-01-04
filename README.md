@@ -3,9 +3,7 @@
 This is the frontend project of ECG Classification Website
 ## Demo feature
 
-<p align="center" width="100%">
-    <video src="./demo/Demo ECG classification.mp4" width="100%" controls></video>
-</p>
+![ECG Demo](./demo/demo.gif)
 
 ## Setup
 Set up backend project (link below): 
