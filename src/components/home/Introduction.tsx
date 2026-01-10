@@ -40,6 +40,13 @@ export default function Introduction() {
                 <span className="material-icons-outlined">upload_file</span>
                 Start Analysis
               </Link>
+              <a
+                href="https://github.com/AST-tnbt/ecg-classification-web/blob/main/demo/demo.gif"
+                target="_blank"
+                className="w-full cursor-pointer sm:w-auto px-8 py-3.5 bg-transparent text-primary rounded-lg font-semibold hover:bg-primary/10 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2 border-2 border-primary">
+                <span className="material-icons-outlined">play_circle</span>
+                Watch Demo
+              </a>
             </div>
           </div>
           {/* <!-- Right Visual --> */}

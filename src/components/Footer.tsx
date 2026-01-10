@@ -8,10 +8,10 @@ export default function Footer() {
                         <div className="w-6 h-6 rounded bg-primary flex items-center justify-center text-white text-xs">
                             <span className="material-icons-outlined text-sm">monitor_heart</span>
                         </div>
-                        <span className="text-lg font-bold">AnalyzeECG</span>
+                        <span className="text-lg font-bold">Heartbeat Classifier</span>
                     </div>
                     <p className="text-slate-500 text-sm max-w-xs mb-6">
-                        AI tools for heartbeat classification from raw ECG signals.
+                        AI tools for heartbeat classification from raw ECG signals using machine learning and deep learning.
                     </p>
                     <div className="flex gap-4">
                         <a className="text-slate-400 hover:text-primary transition-colors" href="#"><span
@@ -50,7 +50,7 @@ export default function Footer() {
             </div>
             <div
                 className="pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p className="text-slate-500 text-sm">© 2025 AnalyzeECG. All rights reserved.</p>
+                <p className="text-slate-500 text-sm">© 2025 Bao Tin, Ngoc Minh. All rights reserved.</p>
                 <div className="flex items-center gap-2 text-sm text-slate-500">
                     <span className="w-2 h-2 rounded-full bg-green-500"></span>
                     <span>All systems operational</span>

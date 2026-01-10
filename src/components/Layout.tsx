@@ -1,6 +1,7 @@
 import { Outlet, useLocation } from "react-router";
 import Header from "./Header";
 import Footer from "./Footer";
+import ScrollToTopButton from "./ScrollToTopButton";
 
 export default function Layout() {
   const { pathname } = useLocation()
@@ -11,6 +12,7 @@ export default function Layout() {
           <Header currentPath={pathname} />
           <Outlet />
           <Footer />
+          <ScrollToTopButton />
         </main>
     </>
   )

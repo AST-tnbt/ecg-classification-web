@@ -19,3 +19,53 @@
     @apply font-sans bg-background-light text-slate-900;
   }
 }
+
+@layer utilities {
+  /* Enhanced glow pulse animation */
+  @keyframes highlight-glow {
+    0%, 100% {
+      box-shadow: 
+        0 0 20px rgba(19, 91, 236, 0.3),
+        0 0 40px rgba(19, 91, 236, 0.2),
+        0 20px 25px -5px rgba(19, 91, 236, 0.15);
+    }
+    50% {
+      box-shadow: 
+        0 0 30px rgba(19, 91, 236, 0.5),
+        0 0 60px rgba(19, 91, 236, 0.3),
+        0 25px 50px -12px rgba(19, 91, 236, 0.25);
+    }
+  }
+  
+  /* Shimmer effect for background */
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  
+  /* Gentle bounce for badge */
+  @keyframes bounce-gentle {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+  
+  .animate-highlight-glow {
+    animation: highlight-glow 2s ease-in-out infinite;
+  }
+  
+  .animate-shimmer {
+    animation: shimmer 3s ease-in-out infinite;
+  }
+  
+  .animate-bounce-gentle {
+    animation: bounce-gentle 1.5s ease-in-out infinite;
+  }
+}
